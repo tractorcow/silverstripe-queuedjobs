@@ -9,26 +9,9 @@
 class ProcessJobQueueTask extends BuildTask {
 
 	/**
-	 *
-	 * @var TaskRunnerEngine
+	 * @var QueuedJobService
 	 */
-	protected $taskRunner;
-
-	/**
-	 * @param TaskRunnerEngine $engine
-	 */
-	public function setTaskRunner($engine) {
-		$this->taskRunner = $engine;
-	}
-
-	/**
-	 *
-	 * @return TaskRunnerEngine
-	 */
-	public function getTaskRunner() {
-		return $this->taskRunner;
-	}
-
+	public $queuedJobService;
 	/**
 	 * @return string
 	 */
@@ -62,9 +45,7 @@ class ProcessJobQueueTask extends BuildTask {
 
 		// Run the queue
 		$queue = $this->getQueue($request);
-		$this
-			->getTaskRunner()
-			->runQueue($queue);
+		$this->queuedJobService->runQueue($queue);
 	}
 
 	/**

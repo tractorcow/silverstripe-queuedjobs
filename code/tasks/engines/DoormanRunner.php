@@ -35,11 +35,6 @@ class DoormanRunner extends BaseRunner implements TaskRunnerEngine {
 	 * @param string $queue
 	 */
 	public function runQueue($queue) {
-		// fix/prep any strange jobs!
-		$this
-			->getService()
-			->checkJobHealth();
-
 		// split jobs out into multiple tasks...
 
 		$manager = new DoormanProcessManager();
